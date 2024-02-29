@@ -48,19 +48,29 @@ export default function TextForm(props) {
           rows="8"
           value={text}
         ></textarea>
-        <button className="btn btn-primary my-3 mx-2" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary my-3 mx-2"
+          onClick={handleUpClick}
+        >
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary my-3 mx-2" onClick={handleLowClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary my-3 mx-2"
+          onClick={handleLowClick}
+        >
           Convert to LowerCase
         </button>
         <button
+          disabled={text.length === 0}
           className="btn btn-primary my-3 mx-2"
           onClick={handleClearClick}
         >
           Clear Text
         </button>
         <button
+          disabled={text.length === 0}
           type="submit"
           onClick={speak}
           className="btn btn-primary my-3 mx-2"
@@ -68,6 +78,7 @@ export default function TextForm(props) {
           Speak Text
         </button>
         <button
+          disabled={text.length === 0}
           className="btn btn-primary my-3 mx-2"
           onClick={handleExtraSpace}
         >
@@ -80,11 +91,26 @@ export default function TextForm(props) {
       >
         <h3>Your text summary</h3>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes Read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          Minutes Read
+        </p>
         <h3>Preview</h3>
-        <p>{text.length>0 ? text : "Enter in the textbox above to preview it here"}</p>
+        <p>
+          {text.length > 0
+            ? text
+            : "Enter in the textbox above to preview it here"}
+        </p>
       </div>
     </>
   );

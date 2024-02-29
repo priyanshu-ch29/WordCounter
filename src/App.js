@@ -43,17 +43,16 @@ function App() {
         <div className="container my-3">
           <Switch>
             <Route exact path="/about">
-              <About />
+              <About mode={mode} />
             </Route>
             <Route exact path="/">
               <TextForm
                 showAlert={showAlert}
-                heading="Enter your text here"
+                heading="Word Counter, Character Counter, Remove extra spaces"
                 mode={mode}
               />
             </Route>
           </Switch>
-          {/* <About/> */}
         </div>
       </Router>
     </>
